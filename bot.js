@@ -4,7 +4,7 @@ const TelegramBot = require('node-telegram-bot-api');
 class Bot {
 
   constructor() {
-    this.token = '1548371127:AAGaIl90Jkjq-zozvujT2GEMlTr5BU-BPvw';
+    this.token = 'YOUR_API_KEY';
     this.bot = new TelegramBot(this.token, { polling: true });
 
     this.commands = [];
