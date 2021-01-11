@@ -18,12 +18,12 @@ function smartLaugh(array){
 async function parser(message, bot, matches, chatId) {
 
     try {
-        thenum = Number(message.match(/\d+/)[0])
+        let thenum = message.match(/\d+/) ? Number(message.match(/\d+/)[0]) : 0
 
         if(!thenum){
             return smartLaugh(lols.lol)
         }
-        the_lol = smartLaugh(lols["חחח"])
+        let the_lol = smartLaugh(lols["חחח"])
         if(thenum > 0 && thenum < 10){
             for (i = 0; i < thenum; i++){
                 for (j = 0; j < i; j++){
