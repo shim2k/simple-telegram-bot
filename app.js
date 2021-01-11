@@ -19,7 +19,7 @@ function spawnBot() {
   const Common = require("./commands/Common");
   const Example = require("./commands/Example");
   const Poll = require("./commands/Poll");
-
+  const Lol = require("./commands/Lol")
   const Lucy = new Bot({name: 'Lucy'});
 
   console.log('Starting telegram bot..');
@@ -29,6 +29,7 @@ function spawnBot() {
   Lucy.registerCommand(Common.keywords, Common.parser);
   Lucy.registerCommand(NBAHandler.keywords, NBAHandler.parser);
   Lucy.registerCommand(Poll.keywords, Poll.parser);
+  Lucy.registerCommand(Lol.keywords, Lol.parser);
 
   // Inline example
   Lucy.registerCommand(['hey', 'hi', 'hello'], (incomingMessage, bot, keyMatches) => {
