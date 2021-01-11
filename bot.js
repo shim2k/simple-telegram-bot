@@ -3,7 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 
 class Bot {
 
-  constructor({name}) {
+  constructor({ name }) {
     if (!name) {
       throw new Error('Please provide name');
     }
@@ -28,7 +28,7 @@ class Bot {
       if (!msg || !msg.text) return;
 
       msg.text = msg.text.toLowerCase();
-      
+
       // Maintainer protection
       if (msg.text.indexOf('shimi') > -1 || msg.text.indexOf('שימי') > -1) {
         this.bot.sendMessage(chatId, 'nice try bro');
@@ -37,7 +37,6 @@ class Bot {
 
       // Empty message
       if (msg.text === this.name.toLowerCase()) {
-        const myCommands = await this.bot.getMyCommands();
         this.bot.sendMessage(chatId, `Hello Mr. ${msg.from.last_name || msg.from.first_name}.`);
         return;
       }
