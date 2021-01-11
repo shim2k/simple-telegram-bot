@@ -18,8 +18,9 @@ function spawnBot() {
   const NBAHandler = require("./commands/NBAHandler");
   const Common = require("./commands/Common");
   const Example = require("./commands/Example");
+  const Poll = require("./commands/Poll");
 
-  const Lucy = new Bot();
+  const Lucy = new Bot({name: 'Lucy'});
 
   console.log('Starting telegram bot..');
 
@@ -27,6 +28,13 @@ function spawnBot() {
   Lucy.registerCommand(Example.keywords, Example.parser);
   Lucy.registerCommand(Common.keywords, Common.parser);
   Lucy.registerCommand(NBAHandler.keywords, NBAHandler.parser);
+  Lucy.registerCommand(Poll.keywords, Poll.parser);
+
+  // Inline example
+  Lucy.registerCommand(['hey', 'hi', 'hello'], (incomingMessage, bot, keyMatches) => {
+    // got "/lucy ...hey/hi/hello..."
+    return `${keyMatches[0]} back`;
+  });
 
   console.log('Registered all commands.');
 
