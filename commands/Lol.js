@@ -18,6 +18,10 @@ function smartLaugh(array){
 }
 
 function laughAppropriateToNum(num,lolz,ogNum){
+    if(num > 10){
+        ogNum = num
+        num = 10
+    }
     if (num === 1){
         return smartLaugh(lols.lol);
     }else {
