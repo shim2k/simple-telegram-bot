@@ -4,7 +4,7 @@ const keywords = [
     'מה עדיף',
     '?'
 ]
-async function parser(message, bot, matches, chatId) {
+async function parser(message, { sendPoll }, matches, chatId) {
     message = message.slice(matches[0].length, message.length);
 
     if (message.indexOf('?') === -1) return 'Poll command: /lucy poll [QUESTION+?] [OPTION,OPTION,OPTION]';
@@ -15,7 +15,7 @@ async function parser(message, bot, matches, chatId) {
         .split(',')
         .map(c => c.trim());
 
-        bot.sendPoll(chatId, message.slice(0, message.indexOf('?') + 1), options || ['כן', 'וואלה לא']);
+        sendPoll(chatId, message.slice(0, message.indexOf('?') + 1), options || ['כן', 'וואלה לא']);
 
     } catch (e) {
         return;

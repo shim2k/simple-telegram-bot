@@ -1,9 +1,8 @@
-const { signedCookie } = require('cookie-parser');
 const TelegramBot = require('node-telegram-bot-api');
 
 class Bot {
 
-  constructor({ name }) {
+  constructor({name, storage}) {
     if (!name) {
       throw new Error('Please provide name');
     }
@@ -13,6 +12,7 @@ class Bot {
 
     this.commands = [];
     this.name = `/${name}`;
+    this.storage = storage;
   }
 
   registerCommand = (keywords, messageHandler) => {
@@ -58,7 +58,14 @@ class Bot {
 
       if (!command) return;
 
-      const response = await command.handler(messageWithoutBotName, this.bot, keywordMatches, chatId);
+      const API = {
+        sendMessage: this.bot.sendMessage,
+        sendPoll: this.bot.sendPoll,
+        sendVideo: this.bot.sendVideo,
+        sendVoice: this.bot.sendVoice
+      }
+
+      const response = await command.handler(messageWithoutBotName, API, keywordMatches, chatId);
       if (!response) return;
 
       this.bot.sendMessage(chatId, response);
